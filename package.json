@@ -1,0 +1,33 @@
+{
+  "name": "reccipt-backend",
+  "version": "1.0.0",
+  "description": "The backend GraphQL server for Reccipt",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "start-server": "node app.js",
+    "start:dev": "dotenvx run -f .env.dev -- nodemon app.js"
+  },
+  "author": "Mark Rosenberg",
+  "license": "ISC",
+  "devDependencies": {
+    "@dotenvx/dotenvx": "^0.40.0",
+    "nodemon": "^3.1.0"
+  },
+  "dependencies": {
+    "apollo-server-express": "^3.13.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "express-validator": "^7.0.1",
+    "graphql": "^16.8.1",
+    "graphql-playground-middleware-express": "^1.7.23",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.4.0",
+    "multer": "^1.4.5-lts.1",
+    "uuid": "^9.0.1",
+    "validator": "^13.12.0"
+  }
+}

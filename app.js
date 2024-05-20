@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const { ApolloServer } = require('apollo-server-express');
+const { GraphQLScalarType } = require('graphql');
 const expressPlayground =
     require('graphql-playground-middleware-express').default;
 
@@ -16,10 +17,12 @@ const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO
 const typeDefs = readFileSync('./graphql/schema.graphql', 'utf8');
 const { Query } = require('./graphql/resolvers/Query');
 const { Mutation } = require('./graphql/resolvers/Mutation');
+const { dateScalar } = require('./graphql/scalars');
 
 const resolvers = {
     Query,
-    Mutation
+    Mutation,
+    Date: dateScalar
 };
 
 const app = express();

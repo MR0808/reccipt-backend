@@ -1,9 +1,20 @@
+scalar Date
+
 type User {
     _id: ID!
     firstName: String!
     lastName: String!
     email: String!
+    phoneNumber: String!
     password: String
+    dateOfBirth: Date
+    gender: Gender
+    address1: String
+    address2: String
+    suburb: String
+    postcode: String
+    state: String
+    country: String
 }
 
 type AuthData {
@@ -11,7 +22,25 @@ type AuthData {
     userId: String
 }
 
-input UserInputData {
+type Country {
+    isoCode: String
+    name: String
+    currency: String
+}
+
+type State {
+    isoCode: String
+    name: String
+}
+
+enum Gender {
+    MALE
+    FEMALE
+    OTHER
+    NOTSAY
+}
+
+input UserCreateInputData {
     email: String!
     firstName: String!
     lastName: String!
@@ -24,5 +53,5 @@ type Query {
 }
 
 type Mutation {
-    createUser(userInput: UserInputData): User!
+    createUser(userInput: UserCreateInputData): User!
 }

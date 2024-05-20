@@ -2,6 +2,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const User = require('../../models/user');
+const Country = require('../../models/countries');
+const State = require('../../models/states');
 
 const { authCheck } = require('../../util/user');
 
@@ -37,6 +39,7 @@ const Query = {
         }
     },
     async user(parent, args, { req }) {
+        console.log(req.isAuth);
         authCheck(req);
         try {
             const user = await User.findById(req.userId);

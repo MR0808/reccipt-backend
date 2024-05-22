@@ -1,23 +1,20 @@
-const path = require('path');
-const { readFileSync } = require('fs');
+import { readFileSync } from 'fs';
 
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const mongoose = require('mongoose');
-const { ApolloServer } = require('apollo-server-express');
-const { GraphQLScalarType } = require('graphql');
-const expressPlayground =
-    require('graphql-playground-middleware-express').default;
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import mongoose from 'mongoose';
+import { ApolloServer } from 'apollo-server-express';
+import expressPlayground from 'graphql-playground-middleware-express';
 
-const auth = require('./middleware/auth');
+import auth from './middleware/auth.js';
 
 const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.vuiwnxj.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}`;
 
 const typeDefs = readFileSync('./graphql/schema.graphql', 'utf8');
-const { Query } = require('./graphql/resolvers/Query');
-const { Mutation } = require('./graphql/resolvers/Mutation');
-const { dateScalar } = require('./graphql/scalars');
+import Query from './graphql/resolvers/Query.js';
+import Mutation from './graphql/resolvers/Mutation.js';
+import dateScalar from './graphql/scalars.js';
 
 const resolvers = {
     Query,
@@ -53,7 +50,7 @@ const startServer = async () => {
 
 startServer();
 
-app.get('/playground', expressPlayground({ endpoint: '/graphql' }));
+app.get('/playground', expressPlayground.default({ endpoint: '/graphql' }));
 
 app.use((error, req, res, next) => {
     console.log(error);

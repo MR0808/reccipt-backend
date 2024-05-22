@@ -1,19 +1,20 @@
-const bcrypt = require('bcryptjs');
-const validator = require('validator');
+import bcrypt from 'bcryptjs';
+import validator from 'validator';
 
-const User = require('../../models/user');
+import Consumer from '../../models/consumer.js';
+import Business from '../../models/business.js';
 
-const { authCheck } = require('../../util/user');
+import authCheck from '../../util/auth.js';
 
 const Mutation = {
-    async createUser(parent, { userInput }) {
+    async createConsumer(parent, { consumerInput }) {
         const errors = [];
-        if (!validator.isEmail(userInput.email)) {
+        if (!validator.isEmail(consumerInput.email)) {
             errors.push({ message: 'Email is invalid.' });
         }
         if (
-            validator.isEmpty(userInput.password) ||
-            !validator.isLength(userInput.password, { min: 5 })
+            validator.isEmpty(consumerInput.password) ||
+            !validator.isLength(consumerInput.password, { min: 5 })
         ) {
             errors.push({ message: 'Password too short.' });
         }
@@ -24,21 +25,26 @@ const Mutation = {
             throw error;
         }
         try {
-            const existingUser = await User.findOne({ email: userInput.email });
-            if (existingUser) {
+            const existingConsumer = await Consumer.findOne({
+                email: consumerInput.email
+            });
+            if (existingConsumer) {
                 const error = new Error('User exists already!');
                 throw error;
             }
             // try {
-            const hashedPw = await bcrypt.hash(userInput.password, 12);
-            const user = new User({
-                email: userInput.email,
+            const hashedPw = await bcrypt.hash(consumerInput.password, 12);
+            const consumer = new Consumer({
+                email: consumerInput.email,
                 password: hashedPw,
-                firstName: userInput.firstName,
-                lastName: userInput.lastName
+                firstName: consumerInput.firstName,
+                lastName: consumerInput.lastName
             });
-            const createdUser = await user.save();
-            return { ...createdUser._doc, _id: createdUser._id.toString() };
+            const createdConsumer = await consumer.save();
+            return {
+                ...createdConsumer._doc,
+                _id: createdConsumer._id.toString()
+            };
         } catch (error) {
             if (!error.code) {
                 error.code = 500;
@@ -48,4 +54,4 @@ const Mutation = {
     }
 };
 
-exports.Mutation = Mutation;
+export default Mutation;

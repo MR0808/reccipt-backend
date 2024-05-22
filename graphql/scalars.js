@@ -1,6 +1,6 @@
-const { GraphQLScalarType, Kind } = require('graphql');
+import { GraphQLScalarType, Kind } from 'graphql';
 
-exports.dateScalar = new GraphQLScalarType({
+const dateScalar = new GraphQLScalarType({
     name: 'Date',
     description: 'Date custom scalar type',
     serialize(value) {
@@ -24,3 +24,5 @@ exports.dateScalar = new GraphQLScalarType({
         return null;
     }
 });
+
+export default dateScalar;

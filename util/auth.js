@@ -6,4 +6,4 @@ const authCheck = (req) => {
     }
 };
 
-exports.authCheck = authCheck;
+export default authCheck;

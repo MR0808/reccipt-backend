@@ -1,15 +1,13 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 
-module.exports = (req, res, next) => {
+const auth = (req, res, next, type) => {
     const authHeader = req.get('Authorization');
-    console.log('authHeader - ' + authHeader);
     if (!authHeader) {
         req.isAuth = false;
         return next();
     }
     const token = req.get('Authorization').split(' ')[1];
     let decodedToken;
-    console.log('token - ' + token);
     try {
         decodedToken = jwt.verify(token, process.env.LOGIN_SALT);
     } catch {
@@ -25,3 +23,5 @@ module.exports = (req, res, next) => {
 
     next();
 };
+
+export default auth;

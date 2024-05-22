@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "The backend GraphQL server for Reccipt",
   "main": "app.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
@@ -12,7 +13,7 @@
   "author": "Mark Rosenberg",
   "license": "ISC",
   "devDependencies": {
-    "@dotenvx/dotenvx": "^0.40.0",
+    "@dotenvx/dotenvx": "^0.43.0",
     "nodemon": "^3.1.0"
   },
   "dependencies": {
@@ -21,7 +22,7 @@
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "express": "^4.19.2",
-    "express-validator": "^7.0.1",
+    "express-validator": "^7.1.0",
     "graphql": "^16.8.1",
     "graphql-playground-middleware-express": "^1.7.23",
     "jsonwebtoken": "^9.0.2",

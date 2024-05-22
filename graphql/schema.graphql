@@ -1,6 +1,6 @@
 scalar Date
 
-type User {
+type Consumer {
     _id: ID!
     firstName: String!
     lastName: String!
@@ -19,7 +19,7 @@ type User {
 
 type AuthData {
     token: String
-    userId: String
+    consumerId: String
 }
 
 type Country {
@@ -40,7 +40,7 @@ enum Gender {
     NOTSAY
 }
 
-input UserCreateInputData {
+input ConsumerCreateInputData {
     email: String!
     firstName: String!
     lastName: String!
@@ -49,9 +49,9 @@ input UserCreateInputData {
 
 type Query {
     login(email: String, password: String): AuthData!
-    user: User!
+    consumer: Consumer!
 }
 
 type Mutation {
-    createUser(userInput: UserCreateInputData): User!
+    createConsumer(consumerInput: ConsumerCreateInputData): Consumer!
 }

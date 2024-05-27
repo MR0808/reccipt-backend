@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
-var businessUserSchema = new Schema(
+var adminUserSchema = new Schema(
     {
         firstName: {
             type: String,
@@ -12,7 +12,10 @@ var businessUserSchema = new Schema(
             type: String,
             required: true
         },
-        phoneNumber: String,
+        phoneNumber: {
+            type: String,
+            require: true
+        },
         email: {
             type: String,
             required: true
@@ -20,18 +23,9 @@ var businessUserSchema = new Schema(
         password: {
             type: String,
             required: true
-        },
-        type: {
-            type: String,
-            enum: ['Admin', 'User']
-        },
-        business: {
-            type: Schema.Types.ObjectId,
-            required: true,
-            ref: 'Business'
         }
     },
     { timestamps: true }
 );
 
-export default mongoose.model('BusinessUser', businessUserSchema);
+export default mongoose.model('AdminUser', adminUserSchema);

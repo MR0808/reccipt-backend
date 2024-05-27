@@ -8,18 +8,9 @@ var businessSchema = new Schema(
             type: String,
             required: true
         },
-        tradingName: {
-            type: String,
-            required: true
-        },
-        phoneNumber: {
-            type: String,
-            require: true
-        },
-        genericEmail: {
-            type: String,
-            required: true
-        },
+        tradingName: String,
+        phoneNumber: String,
+        genericEmail: String,
         address1: String,
         address2: String,
         suburb: String,
@@ -40,10 +31,14 @@ var businessSchema = new Schema(
         ],
         abn: String,
         acn: String,
+        status: {
+            type: String,
+            enum: ['Draft', 'Pending', 'Active']
+        },
         categories: {
-            itemType: {
+            businessType: {
                 type: Schema.Types.ObjectId,
-                ref: 'ItemType'
+                ref: 'BusinessType'
             },
             eComType: {
                 type: Schema.Types.ObjectId,

@@ -12,13 +12,13 @@ import auth from './middleware/auth.js';
 const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.vuiwnxj.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}`;
 
 const typeDefs = readFileSync('./graphql/schema.graphql', 'utf8');
-import Query from './graphql/resolvers/Query.js';
 import Mutation from './graphql/resolvers/Mutation.js';
+import Query from './graphql/resolvers/Query.js';
 import dateScalar from './graphql/scalars.js';
 
 const resolvers = {
-    Query,
     Mutation,
+    Query,
     Date: dateScalar
 };
 

@@ -5,7 +5,7 @@ type Consumer {
     firstName: String!
     lastName: String!
     email: String!
-    phoneNumber: String!
+    phoneNumber: String
     password: String
     dateOfBirth: Date
     gender: Gender
@@ -17,9 +17,18 @@ type Consumer {
     country: String
 }
 
+type Admin {
+    _id: ID!
+    firstName: String!
+    lastName: String!
+    email: String!
+    phoneNumber: String
+    password: String
+}
+
 type AuthData {
     token: String
-    consumerId: String
+    userId: String
 }
 
 type Country {
@@ -40,7 +49,7 @@ enum Gender {
     NOTSAY
 }
 
-input ConsumerCreateInputData {
+input CreateInputData {
     email: String!
     firstName: String!
     lastName: String!
@@ -50,8 +59,10 @@ input ConsumerCreateInputData {
 type Query {
     login(email: String, password: String): AuthData!
     consumer: Consumer!
+    user: Admin!
 }
 
 type Mutation {
-    createConsumer(consumerInput: ConsumerCreateInputData): Consumer!
+    createConsumer(consumerInput: CreateInputData): Consumer!
+    createAdmin(adminInput: CreateInputData): Admin!
 }
